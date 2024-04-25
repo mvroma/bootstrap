@@ -20,6 +20,7 @@ export interface Producto {
 })
 export class ListaproductoComponent implements OnInit{
 
+
   productos: Producto[]=[];
   newProducto: Producto = {
     product_id: 0,
@@ -34,7 +35,9 @@ export class ListaproductoComponent implements OnInit{
     .subscribe(data => {this.productos = data});
   }
   altaProducto(){
-    this.servicio.altaProducto(this.newProducto).subscribe();
+    this.servicio.altaProducto(this.newProducto).subscribe(() => {
+      window.location.reload();
+    });
   }
   borrarProducto(product_id: number): void {
     this.servicio.borrarProducto(product_id).subscribe(() => {
